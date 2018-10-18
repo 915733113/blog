@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="public/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+	<link href="public/data/img/css/default.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+{include file="./header.html"}
+<ul class="nav nav-pills">
+	<li role="presentation"><a href="index.php?c=index&a=studyShow">学习笔记</a> </li>
+	<li role="presentation"><a href="index.php?c=index&a=lifeShow">生活随笔</a> </li>
+</ul>
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+	
+	{if !empty($data) }
+		{foreach $data as $news}
+		<div class="post">
+			<h1 class="title"><a href="index.php?c=index&a=newsshow&id={$news.id}">{$news.title}</a><span style="color:#ccc;font-size:14px;">　　作者：{$news.author}</span></h1>
+			<div class="entry">
+				{$news.content}
+			</div>
+			<br/>
+			{$news.datetime}
+			<div class="meta">
+				<p class="links"><a href="index.php?c=index&a=newsshow&id={$news.id}" class="more">查看详细</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;</p>
+			</div>
+		</div>
+		{/foreach}
+	{else}
+		{"还未有新闻，请联系管理员添加..."}
+	{/if}
+	</div>
+	<!-- end content -->
+	{include file="./sidebar.html"}
+	<div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end page -->
+{include file="./footer.html"}
+</body>
+</html>
